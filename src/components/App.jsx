@@ -12,9 +12,8 @@ export class App extends Component {
   };
 
   handleAddFeedback = option => {
-    const feedback = option.target.textContent.toLowerCase();
     this.setState(prevState => ({
-      [feedback]: prevState[feedback] + 1,
+      [option]: prevState[option] + 1,
     }));
   };
 
@@ -42,7 +41,10 @@ export class App extends Component {
     return (
       <>
         <Section title={'Please leave feedback'}>
-          <FeedbackOptions onLeaveFeedback={handleAddFeedback} />
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={handleAddFeedback}
+          />
         </Section>
         <Section title={'Statistics'}>
           {countTotalFeedback() === 0 ? (
